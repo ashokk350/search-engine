@@ -1,0 +1,36 @@
+<div>
+	<dir class="row">
+		<h4>Upload file</h4>
+	</dir>
+	<div class="uplod-file">
+		<%= form_for :search_engine, url: search_engines_path, method: :post do |f| %>
+			<%= f.file_field :file %></br>
+			<%= f.submit "Submit", class: "btn btn-primary" %> 
+		<% end %></br>
+	</div>
+
+	<div>
+		<% if @output %>
+			<div class="uplod-file">
+				<%= link_to 'Clear Output', search_engines_path, class: "btn btn-primary" %>
+			</div>
+			<dir class="row">
+				<h4>Output for uploaded file</h4>
+			</dir>
+			<% @output.each.with_index(1) do |pages, index| %>
+				<dir class="row">
+					<div class="col-md-1"><%= "Q#{index}: " %></div>
+					<% pages.each do |page| %>
+						<div class="col-md-1"><%= page %></div>
+					<% end %>
+				</dir>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<style type="text/css">
+	.uplod-file {
+	  padding-left: 25px;
+	}
+</style>
